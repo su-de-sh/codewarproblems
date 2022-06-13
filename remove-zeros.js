@@ -1,18 +1,30 @@
 function removeZeros(array) {
+  console.log(array);
+  let isZero = false;
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === 0) {
+    if (Number(array[i]) === 0 && array[i] !== null && array[i] !== false) {
       let zero = mySplice(array, i, 1);
-
+      //   console.log("zero" + typeof zero[0] + zero[0]);
+      //   console.log(i);
       array.push(zero[0]);
-      console.log(array);
-      i = -1;
+      //console.log(array);
+      for (let j = i; j < array.length; j++) {
+        if (Number(array[j]) !== 0) {
+          isZero = false;
+          break;
+        } else {
+          isZero = true;
+        }
+      }
+      if (isZero) {
+        break;
+      }
+      i = i - 1;
     }
   }
-
+  console.log(array);
   return array;
 }
-
-console.log(removeZeros([7, 2, 3, 0, 4, 6, 0, 0, 13, 0, 78, 0, 0, 19, 14]));
 
 function mySplice(array, startIdx, deleteCount, word) {
   const deletedArray = [];
@@ -41,3 +53,4 @@ function mySplice(array, startIdx, deleteCount, word) {
 
   return deletedArray;
 }
+removeZeros([1, null, "5", "0", "2", 0, 0, 8, 6, null, false]);
