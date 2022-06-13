@@ -3,11 +3,6 @@ function removeZeros(array) {
   let isZero = false;
   for (let i = 0; i < array.length; i++) {
     if (Number(array[i]) === 0 && array[i] !== null && array[i] !== false) {
-      let zero = mySplice(array, i, 1);
-      //   console.log("zero" + typeof zero[0] + zero[0]);
-      //   console.log(i);
-      array.push(zero[0]);
-      //console.log(array);
       for (let j = i; j < array.length; j++) {
         if (Number(array[j]) !== 0) {
           isZero = false;
@@ -19,6 +14,12 @@ function removeZeros(array) {
       if (isZero) {
         break;
       }
+
+      let zero = mySplice(array, i, 1);
+      //   console.log("zero" + typeof zero[0] + zero[0]);
+      //   console.log(i);
+      array[array.length] = zero[0];
+      //console.log(array);
       i = i - 1;
     }
   }
@@ -31,16 +32,16 @@ function mySplice(array, startIdx, deleteCount, word) {
   const requiredArray = [];
 
   for (let i = 0; i < startIdx; i++) {
-    requiredArray.push(array[i]);
+    requiredArray[requiredArray.length] = array[i];
   }
   if (word) {
-    requiredArray.push(word);
+    requiredArray[requiredArray.length](word);
   }
   for (let i = startIdx; i < startIdx + deleteCount; i++) {
-    deletedArray.push(array[i]);
+    deletedArray[deletedArray.length] = array[i];
   }
   for (let i = startIdx + deleteCount; i < array.length; i++) {
-    requiredArray.push(array[i]);
+    requiredArray[requiredArray.length] = array[i];
   }
 
   while (array.length) {
