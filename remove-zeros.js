@@ -32,7 +32,7 @@ function mySplice(array, startIdx, deleteCount, word) {
   const requiredArray = [];
 
   for (let i = 0; i < startIdx; i++) {
-    requiredArray[requiredArray.length] = array[i];
+    requiredArray[requiredArray.length] = array[i]; // .push implemented without .push method
   }
   if (word) {
     requiredArray[requiredArray.length](word);
