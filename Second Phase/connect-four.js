@@ -161,7 +161,7 @@ let array = [
   "E_Yellow",
   "E_Red",
 ];
-array = [
+array1 = [
   "C_Yellow",
   "E_Red",
   "G_Yellow",
@@ -192,3 +192,4 @@ array = [
   "C_Red",
 ];
 whoIsWinner(array);
+whoIsWinner(array1);
