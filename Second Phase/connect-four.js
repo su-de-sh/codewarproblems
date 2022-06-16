@@ -30,18 +30,23 @@ function whoIsWinner(piecesPositionList) {
 
     let matchHorizontal = horizontalCheck();
     let matchVertical = verticalCheck();
+    let matchDiagonal = diagonalCheck();
 
     if (matchHorizontal) {
       console.log(myGrid);
       console.log(matchHorizontal);
       return matchHorizontal;
-    }
-    if (matchVertical) {
+    } else if (matchVertical) {
       console.log(myGrid);
       console.log(matchVertical);
       return matchVertical;
+    } else if (matchDiagonal) {
+      console.log(myGrid);
+      console.log(matchDiagonal);
+      return matchDiagonal;
     }
   }
+  return "Draw";
 
   // console.log(myGrid);
   //CHECK FOR HORIZONTAL
@@ -85,54 +90,30 @@ function whoIsWinner(piecesPositionList) {
     }
     return 0;
   }
-  // for (let i = myGrid.length - 1; i >= 0; i--) {
-  //   for (let j = 0; j < myGrid[i].length; j++) {
-  //     let myElement = myGrid[i][j];
-  //     if (myElement) {
-  //       if (
-  //         myGrid[i][j] === myGrid[i + 1][j] &&
-  //         myGrid[i][j] === myGrid[i + 2][j] &&
-  //         myGrid[i][j] === myGrid[i + 3][j]
-  //       ) {
-  //         console.log("vertical match");
-  //         return myGrid[i][j];
-  //       }
-  //     }
-  //   }
-  // }
-  // for (let i = myGrid.length - 1; i >= 0; i--) {
-  //   for (let j = 0; j < myGrid[i].length - 3; j++) {
-  //     let myElement = myGrid[i][j];
 
-  //     if (myElement) {
-  //       if (
-  //         myGrid[i][j] === myGrid[i + 1][j + 1] &&
-  //         myGrid[i][j] === myGrid[i + 2][j + 2] &&
-  //         myGrid[i][j] === myGrid[i + 3][j + 3]
-  //       ) {
-  //         console.log("diagonal match");
-  //         return myGrid[i][j];
-  //       }
-  //     }
-  //   }
-  // }
-  // for (let i = myGrid.length - 1; i >= 0; i--) {
-  //   for (let j = 0; j < myGrid[i].length - 3; j++) {
-  //     let myElement = myGrid[i][j];
-
-  //     if (myElement) {
-  //       if (
-  //         myGrid[i][j] === myGrid[i - 1][j + 1] &&
-  //         myGrid[i][j] === myGrid[i - 2][j + 2] &&
-  //         myGrid[i][j] === myGrid[i - 3][j + 3]
-  //       ) {
-  //         console.log("diagonal match");
-  //         return myGrid[i][j];
-  //       }
-  //     }
-  //   }
-  // }
-  // return "Draw";
+  function diagonalCheck() {
+    for (let i = 0; i < myGrid.length - 3; i++) {
+      for (let j = 0; j < myGrid[i].length; j++) {
+        let myElement = myGrid[i][j];
+        if (myElement) {
+          if (
+            (myGrid[i][j] === myGrid[i + 1][j + 1] &&
+              myGrid[i][j] === myGrid[i + 2][j + 2] &&
+              myGrid[i][j] === myGrid[i + 3][j + 3]) ||
+            (myGrid[i][j] === myGrid[i + 1][j - 1] &&
+              myGrid[i][j] === myGrid[i + 2][j - 2] &&
+              myGrid[i][j] === myGrid[i + 3][j - 3])
+          ) {
+            console.log("diagonal match");
+            console.log(i + 3);
+            console.log(j);
+            return myGrid[i][j];
+          }
+        }
+      }
+    }
+  }
+  return 0;
 }
 
 // Driving code
@@ -180,5 +161,34 @@ let array = [
   "E_Yellow",
   "E_Red",
 ];
-
+array = [
+  "C_Yellow",
+  "E_Red",
+  "G_Yellow",
+  "B_Red",
+  "D_Yellow",
+  "B_Red",
+  "B_Yellow",
+  "G_Red",
+  "C_Yellow",
+  "C_Red",
+  "D_Yellow",
+  "F_Red",
+  "E_Yellow",
+  "A_Red",
+  "A_Yellow",
+  "G_Red",
+  "A_Yellow",
+  "F_Red",
+  "F_Yellow",
+  "D_Red",
+  "B_Yellow",
+  "E_Red",
+  "D_Yellow",
+  "A_Red",
+  "G_Yellow",
+  "D_Red",
+  "D_Yellow",
+  "C_Red",
+];
 whoIsWinner(array);
