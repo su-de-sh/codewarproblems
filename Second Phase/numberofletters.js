@@ -1,6 +1,5 @@
-let myArray = [];
 function numbersOfLetters(integer) {
-  let myStr = String(integer);
+  let myArray = [];
 
   let map = {
     0: "zero",
@@ -14,19 +13,26 @@ function numbersOfLetters(integer) {
     8: "eight",
     9: "nine",
   };
-  let myNewStr = "";
 
-  for (let i = 0; i < myStr.length; i++) {
-    myNewStr += map[myStr[i]];
-  }
+  loop1: while (true) {
+    let myStr = String(integer);
+    let myNewStr = "";
 
-  myArray.push(myNewStr);
-  for (let i = 0; i < myNewStr.length; i++) {
-    if (myNewStr.length === integer) {
-      return myArray;
+    for (let i = 0; i < myStr.length; i++) {
+      myNewStr += map[myStr[i]];
     }
-    return numbersOfLetters(myNewStr.length);
+
+    myArray.push(myNewStr);
+    for (let i = 0; i < myNewStr.length; i++) {
+      if (myNewStr.length === integer) {
+        break loop1;
+      }
+
+      // return numbersOfLetters(myNewStr.length);
+    }
+    integer = myNewStr.length;
   }
+  return myArray;
 }
 console.log(numbersOfLetters(12));
 console.log(numbersOfLetters(1));
