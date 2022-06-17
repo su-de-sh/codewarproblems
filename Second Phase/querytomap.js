@@ -1,6 +1,7 @@
 // Converts a URL Query String into an object map
 function convertQueryToMap(query) {
   let myObjArray = [];
+  let myObj = {};
   let queryArr = query.split("&");
   //   console.log(queryArr);
 
@@ -19,15 +20,39 @@ function convertQueryToMap(query) {
     myObjArray.push(eachObject);
   }
 
-  let myObj = {};
+  // for (obj of myObjArray) {
+  //   console.log(obj);
+  //   for (let keys in obj) {
+  //     myObj[keys] = obj[keys];
+  //     userObj = myObj[keys];
+  //     // console.log(userObj);
+  //     for (let key in userObj) {
+  //       myObj[keys][key] = userObj[key];
+  //       let nameObj = myObj[keys][key];
+  //       for (let k in nameObj) {
+  //         myObj[keys][key][k] = nameObj[k];
+  //         // console.log(nameObj[k]);
+  //       }
+  //     }
+  //   }
+  // }
+  // for (obj of myObjArray) {
+  //   for (let keys in obj) {
+  //     // myObj[keys] = obj[keys];
+  //     // userObj = myObj[keys];
+  //     // // console.log(userObj);
+  //     for (let key in obj[keys]) {
+  //       // myObj[keys][key] = userObj[key];
+  //       // let nameObj = myObj[keys][key];
+  //       for (let k in [obj[keys]][key]) {
+  //         myObj[keys][key][k] = [[obj[keys]][key]][k];
+  //         // console.log(nameObj[k]);
+  //       }
+  //     }
+  //   }
+  // }
 
-  for (obj of myObjArray) {
-    // console.log(obj);
-    for (let keys in obj) {
-      myObj[keys] = obj[keys];
-    }
-  }
-  console.log(myObj);
+  console.log(myObjArray);
 }
 
 convertQueryToMap(
