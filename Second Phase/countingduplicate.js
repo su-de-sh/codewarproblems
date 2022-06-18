@@ -1,3 +1,1 @@
-function duplicateCount(text) {
-  //...
-}
+function duplicateCount(text) {}
