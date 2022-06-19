@@ -11,13 +11,13 @@ function nextBigger(n) {
   }
   if (numOnePos === undefined) return -1;
   //   console.log("i will get printed");
-  let max = 0;
+  let least = 9;
   for (let j = numOnePos + 1; j < numStr.length; j++) {
     if (
-      Number(numStr[j] >= max) &&
+      Number(numStr[j] <= least) &&
       Number(numStr[j] > Number(numStr[numOnePos]))
     ) {
-      max = Number(numStr[j]);
+      least = Number(numStr[j]);
       numTwoPos = j;
     }
   }
