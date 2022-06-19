@@ -15,37 +15,41 @@ function formatDuration(seconds) {
 }
 
 function convert(myDuration) {
-  myDurationFormat = "";
+  let myDurationMap1 = [];
   let myDurationMap = ["year", "day", "hour", "minute", "second"];
-  myDuration.forEach((time, i) => {
+  let myDuration1 = myDuration.filter((n, i) => {
+    if (n !== 0) {
+      myDurationMap1.push(myDurationMap[i]);
+      return n;
+    }
+  });
+  console.log(myDuration1);
+  console.log(myDurationMap1);
+
+  let myDurationFormat = "";
+  myDuration1.forEach((time, i) => {
     if (time > 1) {
-      if (myDurationMap[i] === "second") {
-        myDurationFormat += `${time} ${myDurationMap[i]}s`;
+      if (i === myDuration1.length - 1) {
+        myDurationFormat += `${time} ${myDurationMap1[i]}s`;
+      } else if (i === myDuration1.length - 2) {
+        myDurationFormat += `${time} ${myDurationMap1[i]}s and `;
       } else {
-        if (myDuration[i + 1] && !myDuration[i + 2]) {
-          myDurationFormat += `${time} ${myDurationMap[i]}s and `;
-        } else if (myDuration[i + 1] && myDuration[i + 2]) {
-          myDurationFormat += `${time} ${myDurationMap[i]}s, `;
-        } else {
-          myDurationFormat += `${time} ${myDurationMap[i]}s`;
-        }
+        myDurationFormat += `${time} ${myDurationMap1[i]}s, `;
       }
     }
     if (time === 1) {
-      if (myDurationMap[i] === "second") {
-        myDurationFormat += `${time} ${myDurationMap[i]} `;
+      if (i === myDuration1.length - 1) {
+        myDurationFormat += `${time} ${myDurationMap1[i]}`;
+      } else if (i === myDuration1.length - 2) {
+        myDurationFormat += `${time} ${myDurationMap1[i]} and `;
       } else {
-        if (myDuration[i + 1] && !myDuration[i + 2]) {
-          myDurationFormat += `${time} ${myDurationMap[i]} and `;
-        } else if (myDuration[i + 1] && myDuration[i + 2]) {
-          myDurationFormat += `${time} ${myDurationMap[i]}, `;
-        } else {
-          myDurationFormat += `${time} ${myDurationMap[i]}`;
-        }
+        myDurationFormat += `${time} ${myDurationMap1[i]}, `;
       }
     }
   });
   return myDurationFormat.trim();
 }
 
-console.log(formatDuration(369121517));
+console.log(formatDuration(15171));
+
+// Expected: '111 days, 22 hours and 27 seconds', instead got: '111 days and 22 hours27 seconds'
